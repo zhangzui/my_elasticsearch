@@ -10,6 +10,7 @@
 
 	<modules>
 		<module>my_es_common</module>
+		<module>my_es_service</module>
 	</modules>
 
 	<properties>

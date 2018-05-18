@@ -16,10 +16,8 @@ import java.net.InetAddress;
 public class EsClient {
 
     /**
-     * elasticsearch的地址
+     * elasticsearch的Ip
      */
-//    private static final String host = "10.13.110.245";
-//    private static final String host = "10.13.58.131";
     private static final String host = "127.0.0.1";
 
     /**
