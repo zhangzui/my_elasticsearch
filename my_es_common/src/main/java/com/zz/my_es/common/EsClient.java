@@ -18,6 +18,8 @@ public class EsClient {
     /**
      * elasticsearch的地址
      */
+//    private static final String host = "10.13.110.245";
+//    private static final String host = "10.13.58.131";
     private static final String host = "127.0.0.1";
 
     /**
@@ -30,7 +32,7 @@ public class EsClient {
         TransportClient client = null;
         try {
             //client.transport.sniff true 添加es集群名，自动嗅探，无需添加ip和端口
-            Settings settings = Settings.builder().put("cluster.name", "elastictest").put("client.transport.sniff",true).build();
+            Settings settings = Settings.builder().put("cluster.name", "my-application").put("client.transport.sniff",true).build();
             this.client = new PreBuiltTransportClient(settings)
                     .addTransportAddress(new InetSocketTransportAddress(InetAddress.getByName(host), port));
         } catch (Exception e) {
