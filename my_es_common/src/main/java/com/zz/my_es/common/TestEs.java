@@ -35,10 +35,10 @@ public class TestEs {
 
     @Test
     public void searchTest001() {
-        SearchResponse searchResponse = client.prepareSearch("sina", "bog").get();
+        SearchResponse searchResponse = client.prepareSearch("twitter").get();
         SearchHits hits = searchResponse.getHits();
         SearchHit[] searchHists = hits.getHits();
-        System.out.println(JSON.toJSONString(searchHists));
+        System.out.println("查询到记录数=" + hits.getTotalHits() + "=====" + searchHists.length);
     }
 
     @Test

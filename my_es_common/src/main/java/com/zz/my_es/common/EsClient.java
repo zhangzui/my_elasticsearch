@@ -3,13 +3,11 @@ package com.zz.my_es.common;
 import org.elasticsearch.client.Client;
 import org.elasticsearch.client.transport.TransportClient;
 import org.elasticsearch.common.settings.Settings;
+import org.elasticsearch.common.transport.InetSocketTransportAddress;
 import org.elasticsearch.transport.client.PreBuiltTransportClient;
 import org.springframework.stereotype.Component;
-import org.apache.logging.log4j.Level;
-import org.joda.time.ReadablePeriod;
-import com.fasterxml.jackson.core.JsonFactory;
-//import org.apache.lucene.search.CoveringQuery;
-//import org.elasticsearch.script.ScriptEngineService;
+
+import java.net.InetAddress;
 
 /**
  * Created by xiaotian on 2017/12/1.
@@ -31,8 +29,10 @@ public class EsClient {
     public EsClient() {
         TransportClient client = null;
         try {
-            Settings settings = Settings.builder().put("cluster.name", "elastictest").build();
-            this.client = new PreBuiltTransportClient(settings);
+            //client.transport.sniff true 添加es集群名，自动嗅探，无需添加ip和端口
+            Settings settings = Settings.builder().put("cluster.name", "elastictest").put("client.transport.sniff",true).build();
+            this.client = new PreBuiltTransportClient(settings)
+                    .addTransportAddress(new InetSocketTransportAddress(InetAddress.getByName(host), port));
         } catch (Exception e) {
             e.printStackTrace();
         }
