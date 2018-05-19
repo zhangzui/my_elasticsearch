@@ -36,17 +36,19 @@ public class MyEsTest {
                 "\"postDate\":\"2013-01-30\"," +
                 "\"message\":\"trying out Elasticsearch\"" +
                 "}";
-        IndexResponse response = client.prepareIndex("twitter", "tweet")
-                .setSource(json, XContentType.JSON)
-                .get();
+        System.out.println(json);
+//        IndexResponse response = client.prepareIndex("twitter", "tweet")
+//                .setSource(json, XContentType.JSON)
+//                .get();
     }
 
     @Test
     public void searchTest001() {
-        SearchResponse searchResponse = client.prepareSearch("twitter").get();
-        SearchHits hits = searchResponse.getHits();
+        SearchResponse searcResponse = client.prepareSearch("twitter").get();
+        SearchHits hits = searcResponse.getHits();
         SearchHit[] searchHists = hits.getHits();
         System.out.println("查询到记录数=" + hits.getTotalHits() + "=====" + searchHists.length);
+        System.out.println("查询到记录数=" + JSON.toJSONString(hits.internalHits()));
     }
 
     @Test
